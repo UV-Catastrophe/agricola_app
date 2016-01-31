@@ -5,3 +5,6 @@ target
 
 # Intellij
 .idea
+
+# Lof files
+*.log

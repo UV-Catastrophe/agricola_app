@@ -13,7 +13,8 @@ import scala.concurrent.duration._
 object Boot extends App with Logging {
   implicit val system = ActorSystem("primary")
 
-  val service = system.actorOf(Props[MainRoutes], "main-routes-actor")
+  val gameStore = GameStoreSlick()
+  val service = system.actorOf(MainRoutes.props(gameStore), "main-routes-actor")
 
   implicit val timeout = Timeout(5.seconds)
 
@@ -26,4 +27,18 @@ object Boot extends App with Logging {
 
   info(s"Service running.  actualPort=$actualPort")
   debug("Showing DEBUG logs")
+}
+
+case class GameStoreSlick() {
+  import slick.driver.H2Driver.api._
+
+//  val db = Database.forName("database")
+
+  val db = Database.forURL(
+    url = "jdbc:postgresql://localhost:5432/agrol",
+    user = "agrol",
+    password = "",
+    driver="org.postgresql.Driver",
+    executor = AsyncExecutor("test1", numThreads=10, queueSize=1000)
+  )
 }

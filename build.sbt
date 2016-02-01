@@ -19,6 +19,11 @@ libraryDependencies ++= {
     "org.specs2"          %%  "specs2-core"   % "2.3.11" % "test",
     "org.scalaz"          %%  "scalaz-core"   % "7.1.0",
     "ch.qos.logback" % "logback-classic" % "1.1.2",
-    "org.clapper" %% "grizzled-slf4j" % "1.0.2"
+    "org.clapper" %% "grizzled-slf4j" % "1.0.2",
+    "org.slf4j" % "slf4j-api" % "1.7.7",
+    "joda-time" % "joda-time" % "2.9.2",
+    "com.typesafe.slick" %% "slick" % "3.1.1",
+    "org.slf4j" % "slf4j-nop" % "1.6.4",
+    "com.typesafe.slick" %% "slick-codegen" % "3.0.0"
   )
 }
